@@ -16,12 +16,10 @@ A **Proof of Concept** real-time device tracker website to easily monitor, manag
 ## ✨ Features
 
 - **Real-time Location Tracking**: Live updates of device locations using GPS
-- **Multi-device Support**: Track multiple devices simultaneously on a single map
 - **Interactive Map Interface**: Powered by Leaflet.js with OpenStreetMap tiles
 - **WebSocket Communication**: Instant location updates via Socket.IO
 - **Responsive Design**: Works seamlessly across desktop and mobile devices
 - **High Accuracy Tracking**: Utilizes device GPS for precise location data
-- **Auto-disconnect Handling**: Automatic cleanup when devices go offline
 
 ## 🚀 Quick Start
 
@@ -113,8 +111,7 @@ The app uses the following geolocation options:
 1. **Open the application** in your web browser
 2. **Grant location permissions** when prompted
 3. **View your location** on the interactive map
-4. **Share the URL** with other devices to track multiple locations
-5. **Monitor in real-time** as devices move around
+4. **Monitor your position** as you move around
 
 ## 🚨 Browser Compatibility
 
