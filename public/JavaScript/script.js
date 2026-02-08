@@ -3,7 +3,7 @@ console.log("hey")
 
 //navigator is our windows object
 if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.watchPosition((position) => {
         const {latitude, longitude } = position.coords;
         socket.emit("send-location", {latitude, longitude});
         },

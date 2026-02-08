@@ -28,17 +28,17 @@ io.on("connection", function(socket) {
     });
     console.log("Connected");
 
-    socket.on("disconnected", function() {
-        io.emit("user-disconneted", socket.id);
+    socket.on("disconnect", function() {
+        io.emit("user-disconnected", socket.id);
     })
 });
 
 
 app.get("/", (req, res) => {
-    res.render("index") //see this line
+    res.render("index");
 });
 
-const PORT = process.env.PORT || 8001
+const PORT = 8001
 server.listen(PORT, () => {
-    console.log("Stokholm Syndrome much?!");
+    console.log("Server is running on port " + PORT);
 });
