@@ -8,19 +8,12 @@ if(navigator.geolocation) {
         socket.emit("send-location", {latitude, longitude});
         },
         (error) => {
-            let errorMessage = "An unknown error occurred.";
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    errorMessage = "Location access denied. Please enable location services.";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    errorMessage = "Location information is unavailable.";
-                    break;
-                case error.TIMEOUT:
-                    errorMessage = "Location request timed out. Try again.";
-                    break;
+            // Only alert if user denied permission (important to know)
+            if (error.code === error.PERMISSION_DENIED) {
+                alert("Location access denied. Please enable location services.");
+            } else {
+                console.log("Location error:", error.message);
             }
-            alert(errorMessage);
         },
         {
             enableHighAccuracy: true,
@@ -31,7 +24,7 @@ if(navigator.geolocation) {
 }
 
 //We are asking for location, setting coordinaes to [0,0], zoom = 10 {1-15}
-const map = L.map("map").setView([0,0], 10); //L.map returns a map and setView are view proerties of the map
+const map = L.map("map").setView([0,0], 15); //L.map returns a map and setView are view proerties of the map
 
 //tileLayer gives us the tiles in the map; s, z, x, y are dynmic variables; the url below is fixed
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -46,8 +39,9 @@ socket.on("receive-location", (data)=> {
         markers[id].setLatLng( [latitude, longitude]); 
     }
     else {
-        markers[id] = L.marker([latitude, longitude]).addTo(map); //we are using leaflet to create a markerand usko locatio deni hoti hai
-
+        markers[id] = L.marker([latitude, longitude])
+            .bindPopup(`Device: ${id.substring(0, 8)}`)  // Shows device ID on click
+            .addTo(map);
     }
 });
 
